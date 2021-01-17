@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 using Firebase;
 using Firebase.Auth;
@@ -39,6 +40,12 @@ public class NewUser : MonoBehaviour
 
         Debug.Log(json);
 
-        database.Child("users").Child("1").SetRawJsonValueAsync(json);
+        database.Child("users").Child("1").SetRawJsonValueAsync(json).ContinueWithOnMainThread((task) => 
+        { 
+            if(task.IsCompleted)
+            {
+                SceneManager.LoadScene("UserScene");
+            }
+        });
     }
 }

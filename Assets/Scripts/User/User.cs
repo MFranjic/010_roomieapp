@@ -16,12 +16,18 @@ public class User
     
     // Other data
     //public string Description { get; set; }
-
+    private User() { }
 
     public User(string name, string surname, string email)
     {
         Name = name;
         Surname = surname;
         Email = email;
+    }
+
+    override
+    public string ToString()
+    {
+        return Name + ", " + Surname + ", " + Email;
     }
 }
