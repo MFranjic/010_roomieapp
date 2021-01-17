@@ -15,4 +15,10 @@ public class Student : User
     // Contact data
     public string FacebookLink { get; set; }
     public string InstagramLink { get; set; }
+
+    public Student(string name, string surname, string email, string gender, string age): base(name, surname, email)
+    {
+        Gender = gender;
+        Age = age;
+    }
 }

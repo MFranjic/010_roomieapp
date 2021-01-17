@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "843814136767",
+    "firebase_url": "https://unity-web-app-default-rtdb.firebaseio.com",
     "project_id": "unity-web-app",
     "storage_bucket": "unity-web-app.appspot.com"
   },

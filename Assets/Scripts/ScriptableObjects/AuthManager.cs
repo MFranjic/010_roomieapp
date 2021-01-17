@@ -48,7 +48,7 @@ public class AuthManager : ScriptableObject
             {
                 Debug.Log("Signed in " + user.DisplayName);
                 DisplayDetailedUserInfo(user, 1);
-                SceneManager.LoadScene("MainScene");
+                SceneManager.LoadScene("NewUserScene");
             }
         }
         else
