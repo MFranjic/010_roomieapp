@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "843814136767",
+    "project_id": "unity-web-app",
+    "storage_bucket": "unity-web-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843814136767:android:967eba8abd05b99898cf0a",
+        "android_client_info": {
+          "package_name": "com.Aziriont.RoomieApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "843814136767-icnj7gb5gps0erqr3eob4fc0voqfffl5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW3PqbPvXbQAkoP28PdmTVXxzkgLYNRkE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "843814136767-icnj7gb5gps0erqr3eob4fc0voqfffl5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "843814136767-0f4k0kh1jhp8a4ktogmo19abbtsft7bk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.Aziriont.RoomieApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
