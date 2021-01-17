@@ -14,8 +14,8 @@ public class User
     public string PhoneNumber { get; set; }
     public string Email { get; set; }
     
-
-    
+    // Other data
+    public string Description { get; set; }
 
 
 }
