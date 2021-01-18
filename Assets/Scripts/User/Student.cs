@@ -15,6 +15,12 @@ public class Student : User
     // Contact data
     public string FacebookLink { get; set; }
     public string InstagramLink { get; set; }
+    public string LinkedInLink { get; set; }
+
+    // Education/work data
+    public string Education { get; set; }
+    public string ArrivalMonth { get; set; }
+    public string DepartureMonth { get; set; }
 
     public Student(string name, string surname, string email, string gender, string age): base(name, surname, email)
     {

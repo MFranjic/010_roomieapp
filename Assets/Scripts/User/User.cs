@@ -15,7 +15,8 @@ public class User
     public string Email;
     
     // Other data
-    //public string Description { get; set; }
+    public string Description { get; set; }
+
     private User() { }
 
     public User(string name, string surname, string email)
