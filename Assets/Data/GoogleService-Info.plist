@@ -30,5 +30,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:843814136767:ios:59049b0596516d2d98cf0a</string>
+	<key>DATABASE_URL</key>
+	<string>https://unity-web-app-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>
