@@ -6,51 +6,74 @@ using TMPro;
 
 public class ChangeMainData : MonoBehaviour
 {
-    public TMP_InputField nameIF;
-    public TMP_InputField surnameIF;
-    public TMP_InputField emailIF;
-    public TMP_InputField phoneIF;
-    public TMP_Dropdown genderDD;
-    public TMP_Dropdown countryDD;
-    public TMP_InputField cityIF;
+    public Text changeDataButtonTxt;
 
-    public TMP_Dropdown facultyDD;
-    public TMP_Dropdown arrivalDD;
-    public TMP_Dropdown depratureDD;
-    public TMP_InputField descriptionIF;
+    public GameObject nameIF;
+    public GameObject surnameIF;
+    public GameObject emailIF;
+    public GameObject phoneIF;
+    public GameObject genderDD;
+    public GameObject countryDD;
+    public GameObject cityIF;
 
-    public void ActivateInputFields()
+    public GameObject facultyDD;
+    public GameObject arrivalDD;
+    public GameObject depratureDD;
+    public GameObject descriptionIF;
+
+    private bool editingEnabled;
+
+    private void Start()
     {
-        FieldsEnable();
+        editingEnabled = false;
+    }
+
+    public void SwitchInputFields()
+    {
+        editingEnabled = !editingEnabled;
+        if(editingEnabled)
+        {
+            FieldsEnable();
+            changeDataButtonTxt.text = "Save data";
+            GameObject myEventSystem = GameObject.Find("EventSystem");
+            myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
+        }
+        else
+        {
+            FieldsDisable();
+            changeDataButtonTxt.text = "Change data";
+            GameObject myEventSystem = GameObject.Find("EventSystem");
+            myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
+        }
     }
 
     private void FieldsEnable()
     {
-        nameIF.enabled = true;
-        surnameIF.enabled = true;
-        emailIF.enabled = true;
-        phoneIF.enabled = true;
-        genderDD.enabled = true;
-        countryDD.enabled = true;
-        cityIF.enabled = true;
-        facultyDD.enabled = true;
-        arrivalDD.enabled = true;
-        depratureDD.enabled = true;
-        descriptionIF.enabled = true;
+        nameIF.SetActive(true);
+        surnameIF.SetActive(true);
+        emailIF.SetActive(true);
+        phoneIF.SetActive(true);
+        genderDD.SetActive(true);
+        countryDD.SetActive(true);
+        cityIF.SetActive(true);
+        facultyDD.SetActive(true);
+        arrivalDD.SetActive(true);
+        depratureDD.SetActive(true);
+        descriptionIF.SetActive(true);
     }
 
     private void FieldsDisable()
     {
-        nameIF.enabled = false;
-        surnameIF.enabled = false;
-        emailIF.enabled = false;
-        phoneIF.enabled = false;
-        genderDD.enabled = false;
-        countryDD.enabled = false;
-        cityIF.enabled = false;
-        facultyDD.enabled = false;
-        arrivalDD.enabled = false;
-        depratureDD.enabled = false;
-        descriptionIF.enabled = false;
+        nameIF.SetActive(false);
+        surnameIF.SetActive(false);
+        emailIF.SetActive(false);
+        phoneIF.SetActive(false);
+        genderDD.SetActive(false);
+        countryDD.SetActive(false);
+        cityIF.SetActive(false);
+        facultyDD.SetActive(false);
+        arrivalDD.SetActive(false);
+        depratureDD.SetActive(false);
+        descriptionIF.SetActive(false);
     }
 }
