@@ -12,7 +12,8 @@ public class DateManager : MonoBehaviour
     
     public void SetDateOnSelected(string date)
     {
-        selectedButton.transform.GetChild(0).GetComponent<Text>().text = date;
+        selectedButton.transform.GetChild(0).GetComponent<TMP_Text>().text = date;
+        Debug.Log(date);
         panelDatePicker.SetActive(false);
     }
 
