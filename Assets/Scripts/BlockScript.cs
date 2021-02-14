@@ -25,18 +25,31 @@ public class BlockScript : MonoBehaviour
 
     public bool CheckValidation()
     {
+        bool validated = false;
         if (dataField.GetComponent<TMP_InputField>())
         {
-            text = dataField.GetComponent<TMP_InputField>().text;
+            if (!string.IsNullOrEmpty(dataField.GetComponent<TMP_InputField>().text))
+            {
+                validated = true;
+            }
         }
         else if (dataField.GetComponent<TMP_Dropdown>())
         {
-            text = dataField.GetComponent<TMP_Dropdown>().options[dataField.GetComponent<TMP_Dropdown>().value].text;
+            if (!string.IsNullOrEmpty(dataField.GetComponent<TMP_Dropdown>().options[dataField.GetComponent<TMP_Dropdown>().value].text))
+            {
+                validated = true;
+            }
+        }
+        else if (dataField.GetComponent<Button>())
+        {
+            if (dataField.GetComponent<DateValidation>().isValidated())
+            {
+                validated = true;
+            }
         }
 
-        if (!string.IsNullOrEmpty(text))
+        if (validated)
         {
-            //Debug.Log(text);
             HideError();
             errorUp = false;
         }
