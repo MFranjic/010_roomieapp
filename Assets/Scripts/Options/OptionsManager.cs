@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OptionsManager : MonoBehaviour
 {
-    public GameObject selectedOption;
+    private GameObject selectedOption;
     public GameObject panelOptionsPicker;
 
     public void SetSelectedOptions(bool changed, List<string> options)

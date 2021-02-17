@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class DateManager : MonoBehaviour
 {
-    public GameObject selectedButton;
+    private GameObject selectedButton;
     public GameObject panelDatePicker;
     
     public void SetDateOnSelected(string date)

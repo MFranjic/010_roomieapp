@@ -8,9 +8,33 @@ public class NewProfileManager : MonoBehaviour
 
     private int objectFitterVar = 0;
 
+    private void Start()
+    {
+        HideErrors();
+    }
+
     public void SaveProfile()
     {
-        CheckForErrors();
+        bool hasErrors = CheckForErrors();
+        if (!hasErrors)
+        {
+
+        }
+    }
+
+    private void HideErrors()
+    {
+        objectFitterVar = 0;
+
+        for (int i = 0; i < blockContainer.transform.childCount; i++)
+        {
+            if (blockContainer.transform.GetChild(i).GetComponent<BlockScript>() != null)
+            {
+                blockContainer.transform.GetChild(i).GetComponent<BlockScript>().HideError();
+            }
+        }
+        Vector2 delta = blockContainer.GetComponent<RectTransform>().sizeDelta;
+        blockContainer.GetComponent<RectTransform>().sizeDelta = new Vector2(0, delta.y + objectFitterVar);
     }
 
     private bool CheckForErrors()
@@ -20,7 +44,7 @@ public class NewProfileManager : MonoBehaviour
 
         for (int i = 0; i < blockContainer.transform.childCount; i++)
         {
-            if (blockContainer.transform.GetChild(i).GetComponent<BlockScript>() != null)
+            if (blockContainer.transform.GetChild(i).gameObject.activeSelf && blockContainer.transform.GetChild(i).GetComponent<BlockScript>() != null)
             {
                 if (blockContainer.transform.GetChild(i).GetComponent<BlockScript>().CheckValidation())
                 {
@@ -28,7 +52,6 @@ public class NewProfileManager : MonoBehaviour
                 }
             }
         }
-
         Vector2 delta = blockContainer.GetComponent<RectTransform>().sizeDelta;
         blockContainer.GetComponent<RectTransform>().sizeDelta = new Vector2(0, delta.y + objectFitterVar);
 
