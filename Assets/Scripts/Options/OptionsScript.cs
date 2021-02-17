@@ -19,12 +19,15 @@ public class OptionsScript : MonoBehaviour
     [SerializeField]
     private GameObject item = null;
 
+    [SerializeField]
+    private GameObject empty = null;
+
     private List<string> currentSelectedOptions;
 
     private void Start()
     {
         // TESTING
-        //currentSelectedOptions = new List<string>();
+        currentSelectedOptions = new List<string>();
         //currentSelectedOptions.Add("German");
         //
     }
@@ -57,21 +60,25 @@ public class OptionsScript : MonoBehaviour
 
     private void CreateOptionsGameObjects()
     {
-        for(int i = 0; i < SpawnPoint.transform.childCount; i++)
+
+        // DESTROY current
+        for (int i = 0; i < SpawnPoint.transform.childCount; i++)
         {
-            Destroy(SpawnPoint.transform.GetChild(i).gameObject);
+            Destroy(SpawnPoint.transform.GetChild(i).gameObject);        
         }
 
-        SpawnPoint.GetComponent<HorizontalLayoutGroup>().enabled = false;
+        GameObject SpawnedEmpty = Instantiate(empty, SpawnPoint.localPosition, SpawnPoint.rotation);
+        SpawnedEmpty.transform.SetParent(SpawnPoint, false);
+        SpawnedEmpty.SetActive(false);
+
         for (int i = 0; i < currentSelectedOptions.Count; i++)
         {
-            //newSpawn Position
-            Vector3 pos = new Vector3(SpawnPoint.localPosition.x + i * 90 + 10, SpawnPoint.localPosition.y - 10, SpawnPoint.localPosition.z);
-            //instantiate item
-            GameObject SpawnedItem = Instantiate(item, pos, SpawnPoint.rotation);
+            GameObject SpawnedItem = Instantiate(item, SpawnPoint.localPosition, SpawnPoint.rotation);
 
-            //setParent
             SpawnedItem.transform.SetParent(SpawnPoint, false);
+
+            Debug.Log(SpawnedItem.GetComponent<RectTransform>().sizeDelta.x);
+
             //get ItemDetails Component
             ChosenDetails itemDetails = SpawnedItem.GetComponent<ChosenDetails>();
             //set name
@@ -79,20 +86,25 @@ public class OptionsScript : MonoBehaviour
 
             SpawnedItem.GetComponent<Button>().onClick.AddListener(RemoveOption);
         }
-        SpawnPoint.GetComponent<HorizontalLayoutGroup>().enabled = true;
+
         Canvas.ForceUpdateCanvases();
     }
 
     public string CreateRandomOptions(int num)
     {
+        // DESTROY current
         for (int i = 0; i < SpawnPoint.transform.childCount; i++)
         {
             Destroy(SpawnPoint.transform.GetChild(i).gameObject);
         }
 
+        GameObject SpawnedEmpty = Instantiate(empty, SpawnPoint.localPosition, SpawnPoint.rotation);
+        SpawnedEmpty.transform.SetParent(SpawnPoint, false);
+        SpawnedEmpty.SetActive(false);
+
         currentSelectedOptions = new List<string>();
         System.Random rnd = new System.Random();
-        SpawnPoint.GetComponent<HorizontalLayoutGroup>().enabled = false;
+
         for (int i = 0; i < num; i++)
         {
             bool found = false;
@@ -104,13 +116,10 @@ public class OptionsScript : MonoBehaviour
                     found = true;
                     currentSelectedOptions.Add(newItem);
 
-                    //newSpawn Position
-                    Vector3 pos = new Vector3(SpawnPoint.localPosition.x + i * 90 + 10, SpawnPoint.localPosition.y - 10, SpawnPoint.localPosition.z);
-                    //instantiate item
-                    GameObject SpawnedItem = Instantiate(item, pos, SpawnPoint.rotation);
+                    GameObject SpawnedItem = Instantiate(item, SpawnPoint.localPosition, SpawnPoint.rotation);
 
-                    //setParent
                     SpawnedItem.transform.SetParent(SpawnPoint, false);
+
                     //get ItemDetails Component
                     ChosenDetails itemDetails = SpawnedItem.GetComponent<ChosenDetails>();
                     //set name
@@ -120,8 +129,9 @@ public class OptionsScript : MonoBehaviour
                 }
             }
         }
-        SpawnPoint.GetComponent<HorizontalLayoutGroup>().enabled = true;
+
         Canvas.ForceUpdateCanvases();
+
         return GetCurrentLanguages();
     }
 

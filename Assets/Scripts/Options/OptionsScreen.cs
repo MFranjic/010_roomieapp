@@ -42,9 +42,9 @@ public class OptionsScreen : MonoBehaviour
 
         itemNames = items;
         maxOptions = maxItems;
-        if (currentOptions == null)
+        if (currentOptions.Count == 0)
         {
-            activeOptions = new List<string>();
+            activeOptions = currentOptions;
             currentNumber = 0;
         }
         else
