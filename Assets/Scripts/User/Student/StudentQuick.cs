@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class StudentQuick : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public string Name;
+    public string Country;
+    public string Age;
+    public string Gender;
+
+    private string Email;
+
+    public StudentQuick(string name, string email, string country, string age, string gender)
     {
-        
+        Name = name;
+        Email = email;
+        Country = country;
+        Age = age;
+        Gender = gender;
     }
 
-    // Update is called once per frame
-    void Update()
+    public string GetEmail()
     {
-        
+        return Email;
     }
 }

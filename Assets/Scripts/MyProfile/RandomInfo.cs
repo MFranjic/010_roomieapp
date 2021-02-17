@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,6 +28,9 @@ public class RandomInfo : MonoBehaviour
 
     public GameObject workBlock;
 
+    public GameObject languagesBlock;
+    public int maxLanguages;
+
     public GameObject petsBlock;
 
     public GameObject smokingBlock;
@@ -43,6 +47,24 @@ public class RandomInfo : MonoBehaviour
 
     private System.Random rnd;
 
+    private string name;
+    private string surname;
+    private string gender;
+    private string birthday;
+    private string origin;
+    private string home;
+    private string destination;
+    private string phone;
+    private int whatYouDoIndex;
+    private string study;
+    private string work;
+    private string languages;
+    private int petsIndex;
+    private int smokingIndex;
+    private int guestsIndex;
+
+    private string email = "mfranjic995@gmail.com";
+
     private void Start()
     {
         rnd = new System.Random();
@@ -52,10 +74,9 @@ public class RandomInfo : MonoBehaviour
     {
         // GENDER
         int genderIndex = GenerateIndex(genderBlock.GetComponent<BlockScript>().GetDropdownSize());
-        string gender = genderBlock.GetComponent<BlockScript>().SetIntData(genderIndex);
+        gender = genderBlock.GetComponent<BlockScript>().SetIntData(genderIndex);
 
-        // NAME
-        string name;
+        // NAME     
         if (genderIndex != 0)
         {
             name = GenerateNameFemale();
@@ -67,35 +88,35 @@ public class RandomInfo : MonoBehaviour
         nameBlock.GetComponent<BlockScript>().SetStringData(name);
 
         // SURNAME
-        string surname = GenerateSurname();
+        surname = GenerateSurname();
         surnameBlock.GetComponent<BlockScript>().SetStringData(surname);
 
         // BIRTHDAY
-        string birthday = GenerateDate();
+        birthday = GenerateDate();
         birthdayBlock.GetComponent<BlockScript>().SetStringData(birthday);
 
         // ORIGIN
         int originIndex = GenerateIndex(originBlock.GetComponent<BlockScript>().GetDropdownSize());
-        string origin = originBlock.GetComponent<BlockScript>().SetIntData(originIndex);
+        origin = originBlock.GetComponent<BlockScript>().SetIntData(originIndex);
 
         // HOME
         int homeIndex = GenerateIndex(homeBlock.GetComponent<BlockScript>().GetDropdownSize());
-        string home = homeBlock.GetComponent<BlockScript>().SetIntData(homeIndex);
+        home = homeBlock.GetComponent<BlockScript>().SetIntData(homeIndex);
 
         // DESTINATION
         int destinationIndex = GenerateIndex(destinationBlock.GetComponent<BlockScript>().GetDropdownSize());
-        string destination = destinationBlock.GetComponent<BlockScript>().SetIntData(destinationIndex);
+        destination = destinationBlock.GetComponent<BlockScript>().SetIntData(destinationIndex);
 
         // PHONE
-        string phone = GeneratePhoneNumber(phoneNumberLength);
+        phone = GeneratePhoneNumber(phoneNumberLength);
         phoneNumberBlock.GetComponent<BlockScript>().SetStringData(phone);
 
         // WHATYOUDO
-        int whatYouDoIndex = GenerateIndex(3);
+        whatYouDoIndex = GenerateIndex(3);
         whatYouDoBlock.GetComponent<BlockScript>().SetIntData(whatYouDoIndex);
 
         // STUDY
-        string study = "";
+        study = "";
         if (whatYouDoIndex == 0 || whatYouDoIndex == 2)
         {
             int studyIndex = GenerateIndex(studyBlock.GetComponent<BlockScript>().GetDropdownSize());
@@ -103,27 +124,50 @@ public class RandomInfo : MonoBehaviour
         }
 
         // WORK
-        string work = "";
+        work = "";
         if (whatYouDoIndex == 1 || whatYouDoIndex == 2)
         {
             work = GenerateWorkplace();
             workBlock.GetComponent<BlockScript>().SetStringData(work);
         }
 
+        // LANGUAGES
+        languages = languagesBlock.GetComponent<OptionsScript>().CreateRandomOptions(GenerateIndex(maxLanguages) + 1);
+
         // PETS
-        int petsIndex = GenerateIndex(petsBlock.GetComponent<BlockScript>().GetDropdownSize());
+        petsIndex = GenerateIndex(petsBlock.GetComponent<BlockScript>().GetDropdownSize());
         petsBlock.GetComponent<BlockScript>().SetIntData(petsIndex);
 
         // SMOKING
-        int smokingIndex = GenerateIndex(smokingBlock.GetComponent<BlockScript>().GetDropdownSize());
+        smokingIndex = GenerateIndex(smokingBlock.GetComponent<BlockScript>().GetDropdownSize());
         smokingBlock.GetComponent<BlockScript>().SetIntData(smokingIndex);
 
         // GuESTS
-        int guestsIndex = GenerateIndex(guestsBlock.GetComponent<BlockScript>().GetDropdownSize());
+        guestsIndex = GenerateIndex(guestsBlock.GetComponent<BlockScript>().GetDropdownSize());
         guestsBlock.GetComponent<BlockScript>().SetIntData(guestsIndex);
     }
 
+    public void SaveUser()
+    {
+        StudentMain newStudentMain = new StudentMain(name, surname, name + surname, gender, birthday, origin, home, destination, phone, whatYouDoIndex.ToString(), study, work);
+        StudentQuick newStudentQuick = new StudentQuick(name, name + surname, home, GetAge(birthday), gender);
+        StudentAlgo newStudentAlgo = new StudentAlgo(name + surname, languages, petsIndex.ToString(), smokingIndex.ToString(), guestsIndex.ToString());
 
+        gameObject.GetComponent<DatabaseManager>().AddStudentMain(newStudentMain);
+        gameObject.GetComponent<DatabaseManager>().AddStudentQuick(newStudentQuick);
+        gameObject.GetComponent<DatabaseManager>().AddStudentAlgo(newStudentAlgo);
+    }
+
+    public string GetAge(string dateInput)
+    {
+        DateTime date;
+        DateTime today = DateTime.Today;
+        DateTime.TryParse(dateInput, out date);
+
+        int age = today.Year - date.Year;
+        if (date.Date > today.AddYears(-age)) age--;
+        return age.ToString();
+    }
 
     private string GenerateNameMale()
     {

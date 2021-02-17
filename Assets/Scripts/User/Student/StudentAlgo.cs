@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class StudentAlgo : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public string Languages;
+    public string Pets;
+    public string Smoking;
+    public string Guests;
+    public string Budget;
+    public string Location;
+    public string Type;
+    public string Rules;
+    public string Interests;
+    public string Preferences;
+    public string Habbits_Me;
+    public string Habbits_Other;
+    public string Prio;
+
+    private string Email;
+
+    public StudentAlgo(string email, string languages, string pets, string smoking, string guests)
     {
-        
+        Email = email;
+        Languages = languages;
+        Pets = pets;
+        Smoking = smoking;
+        Guests = guests;
     }
 
-    // Update is called once per frame
-    void Update()
+    public string GetEmail()
     {
-        
+        return Email;
     }
 }

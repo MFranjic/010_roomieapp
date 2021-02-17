@@ -18,7 +18,7 @@ public class NewProfileManager : MonoBehaviour
         bool hasErrors = CheckForErrors();
         if (!hasErrors)
         {
-
+            
         }
     }
 
