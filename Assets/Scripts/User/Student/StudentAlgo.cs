@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StudentAlgo : MonoBehaviour
+public class StudentAlgo
 {
     public string Languages;
     public string Pets;

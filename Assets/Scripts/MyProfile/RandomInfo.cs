@@ -132,7 +132,7 @@ public class RandomInfo : MonoBehaviour
         }
 
         // LANGUAGES
-        languages = languagesBlock.GetComponent<OptionsScript>().CreateRandomOptions(GenerateIndex(maxLanguages) + 1);
+        languages = languagesBlock.GetComponent<OptionsScript>().CreateRandomOptions();
 
         // PETS
         petsIndex = GenerateIndex(petsBlock.GetComponent<BlockScript>().GetDropdownSize());

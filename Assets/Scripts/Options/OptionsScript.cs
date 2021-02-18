@@ -22,6 +22,9 @@ public class OptionsScript : MonoBehaviour
     [SerializeField]
     private GameObject empty = null;
 
+    public Button ButtonChange;
+    public Slider Slider;
+
     private List<string> currentSelectedOptions;
 
     private void Start()
@@ -90,7 +93,7 @@ public class OptionsScript : MonoBehaviour
         Canvas.ForceUpdateCanvases();
     }
 
-    public string CreateRandomOptions(int num)
+    public string CreateRandomOptions()
     {
         // DESTROY current
         for (int i = 0; i < SpawnPoint.transform.childCount; i++)
@@ -104,6 +107,8 @@ public class OptionsScript : MonoBehaviour
 
         currentSelectedOptions = new List<string>();
         System.Random rnd = new System.Random();
+
+        int num = rnd.Next(maxOptions) + 1;
 
         for (int i = 0; i < num; i++)
         {
@@ -147,26 +152,28 @@ public class OptionsScript : MonoBehaviour
 
     public void EnableOptions()
     {
-        RectTransform slider = transform.GetChild(1).gameObject.GetComponent<RectTransform>();
+        RectTransform slider = Slider.gameObject.GetComponent<RectTransform>();
         Vector2 sizeDelta = new Vector2(slider.sizeDelta.x, sliderEnabledHeight);       
         Vector3 position = new Vector3(0, 20, 0);
 
         slider.sizeDelta = sizeDelta;
         slider.anchoredPosition = position;
 
-        transform.GetChild(1).gameObject.GetComponent<Slider>().interactable = true;
+        Slider.gameObject.GetComponent<Slider>().interactable = true;
+        ButtonChange.gameObject.SetActive(true);
     }
 
     public void DisableOptions()
     {
-        RectTransform slider = transform.GetChild(1).gameObject.GetComponent<RectTransform>();
+        RectTransform slider = Slider.gameObject.GetComponent<RectTransform>();
         Vector2 sizeDelta = new Vector2(slider.sizeDelta.x, sliderDisabledHeight);
         Vector3 position = new Vector3(0, 10, 0);
 
         slider.sizeDelta = sizeDelta;
         slider.anchoredPosition = position;
 
-        transform.GetChild(1).gameObject.GetComponent<Slider>().interactable = false;
+        Slider.gameObject.GetComponent<Slider>().interactable = false;
+        ButtonChange.gameObject.SetActive(false);
     }
 
 }

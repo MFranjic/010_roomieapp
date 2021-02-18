@@ -13,8 +13,9 @@ public class DatabaseManager : MonoBehaviour
         database = FirebaseDatabase.DefaultInstance.RootReference;
     }
 
-    public StudentMain FetchStudentMain(string id)
+    public void FetchStudentMain(string id)
     {
+        //.Log("Started fetching...");
         StudentMain student = null;
         database.Child("MAIN_INFO").Child(id).GetValueAsync().ContinueWithOnMainThread(task =>
         {
@@ -32,13 +33,14 @@ public class DatabaseManager : MonoBehaviour
             if (task.IsCompleted)
             {
                 DataSnapshot snapshot = task.Result;
-                student = JsonUtility.FromJson<StudentMain>(snapshot.GetRawJsonValue());               
+                student = JsonUtility.FromJson<StudentMain>(snapshot.GetRawJsonValue());
+                gameObject.GetComponent<MyProfileManager>().LoadStudentMainFromDatabase(student);
+                return;
             }
         });
-        return student;
     }
 
-    public StudentAlgo FetchStudentAlgo(string id)
+    public void FetchStudentAlgo(string id)
     {
         StudentAlgo student = null;
         database.Child("ALGO_INFO").Child(id).GetValueAsync().ContinueWithOnMainThread(task =>
@@ -58,9 +60,10 @@ public class DatabaseManager : MonoBehaviour
             {
                 DataSnapshot snapshot = task.Result;
                 student = JsonUtility.FromJson<StudentAlgo>(snapshot.GetRawJsonValue());
+                gameObject.GetComponent<MyProfileManager>().LoadStudentAlgoFromDatabase(student);
+                return;
             }
         });
-        return student;
     }
 
     public void AddStudentMain(StudentMain student)

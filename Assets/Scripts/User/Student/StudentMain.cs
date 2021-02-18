@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StudentMain : MonoBehaviour
+public class StudentMain
 {
     public string Name;
     public string Surname;
@@ -35,6 +35,25 @@ public class StudentMain : MonoBehaviour
         Goal = goal;
         Faculty = faculty;
         Work = work;
+    }
+
+    public StudentMain(string name, string surname, string email, string gender, string birthday, string origin,
+                       string residence, string destination, string phone, string goal, string faculty, string work, string description, string photo)
+    {
+        Name = name;
+        Surname = surname;
+        Email = email;
+        Gender = gender;
+        Birthday = birthday;
+        Origin = origin;
+        Residence = residence;
+        Destination = destination;
+        Phone = phone;
+        Goal = goal;
+        Faculty = faculty;
+        Work = work;
+        Description = description;
+        Photo = photo;
     }
 
     public void AddDescription(string description)

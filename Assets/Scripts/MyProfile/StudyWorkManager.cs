@@ -19,7 +19,7 @@ public class StudyWorkManager : MonoBehaviour
     private bool studyChosen = false;
     private bool workChosen = false;
 
-    private Color clickedColor = Color.red;
+    public Color clickedColor;
     private Color normalColor = Color.gray;
 
     private void Start()

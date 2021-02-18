@@ -9,8 +9,8 @@ public class ItemDetails : MonoBehaviour
     public TMP_Text text;
 
     private bool active = false;
-    private Color basicColor = Color.gray;
-    private Color activeColor = Color.green;
+    public Color basicColor = Color.gray;
+    public Color activeColor = Color.green;
 
     private void Start()
     {
