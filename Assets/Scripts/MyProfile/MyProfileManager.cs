@@ -7,6 +7,7 @@ using TMPro;
 public class MyProfileManager : MonoBehaviour
 {
     public string userID;   // testing
+    public bool testing = false;
 
     public TMP_Text name;
     public TMP_Text surname;
@@ -41,7 +42,10 @@ public class MyProfileManager : MonoBehaviour
 
     private void Start()
     {
-        //StartCoroutine(LoadData());
+        if(testing)
+        {
+            StartCoroutine(LoadData());
+        }
     }
 
     IEnumerator LoadData()
