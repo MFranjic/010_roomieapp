@@ -11,11 +11,17 @@ public class DatabaseManager : MonoBehaviour
     private void Start()
     {
         database = FirebaseDatabase.DefaultInstance.RootReference;
+
     }
 
     public void FetchStudentMain(string id)
-    {
-        //.Log("Started fetching...");
+    {       
+        if(database == null)
+        {
+            Debug.Log("ERROR: Database not connected.");
+            return;
+        }
+
         StudentMain student = null;
         database.Child("MAIN_INFO").Child(id).GetValueAsync().ContinueWithOnMainThread(task =>
         {

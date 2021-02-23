@@ -42,11 +42,16 @@ public class MyProfileManager : MonoBehaviour
 
     private void Start()
     {
-        if(testing)
+        
+    }
+
+    /*public void LoadScene()
+    {
+        if (testing)
         {
             StartCoroutine(LoadData());
         }
-    }
+    }*/
 
     IEnumerator LoadData()
     {
