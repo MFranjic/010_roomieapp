@@ -21,6 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Testing.unity
     guid: eb36035a60db2e54fbd2a0b5d04e1204
   - enabled: 1
-    path: Assets/Scenes/UserScene.unity
+    path: Assets/Scenes/MatchingScene.unity
     guid: 0be8b3a1320a27e40b43cd039e5b505b
   m_configObjects: {}
