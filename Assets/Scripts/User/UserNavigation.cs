@@ -25,162 +25,169 @@ public class UserNavigation : MonoBehaviour
     public GameObject MenuTop;
     public GameObject MenuBottom;
 
-    private bool mainActive = false;
-    private bool roomActive = false;
-    private bool personActive = false;
+    public ScrollRect scrollRect;
+
+    [SerializeField]
+    private string currentState;
+
+    [SerializeField]
+    private bool editingActive;
 
     private void Start()
     {
-        MainButton.onClick.AddListener(SwitchToMain);
-        RoomButton.onClick.AddListener(SwitchToRoom);
-        PersonButton.onClick.AddListener(SwitchToPerson);
-
-        ButtonEdit.onClick.AddListener(ClickEdit);
-        ButtonSave.onClick.AddListener(ClickSave);
-        ButtonCancel.onClick.AddListener(ClickCancel);
-
         ButtonRandom.onClick.AddListener(RandomizeGrid);
+        
+        currentState = "PROFILE";
 
-        SwitchToMain();
+        NavigateMain("PROFILE");
+
+        ButtonSave.gameObject.SetActive(false);
+        ButtonCancel.gameObject.SetActive(false);
         RoomGrid.GetComponent<GridScript>().CancelEdit();
         PersonGrid.GetComponent<GridScript>().CancelEdit();
     }
 
+    public void NavigateMain(string nextState)
+    {
+        NavigateMain_EndCurrent();
+        NavigateMain_StartNext(nextState);
+        currentState = nextState;
+
+        scrollRect.normalizedPosition = new Vector2(0, 1);
+    }
+
+    private void NavigateMain_EndCurrent()
+    {
+        switch (currentState)            // end current state
+        {
+            case "PROFILE":
+                MainGrid.SetActive(false);
+                return;
+            case "ROOM":
+                RoomGrid.SetActive(false);
+                return;
+            case "PERSON":
+                PersonGrid.SetActive(false);
+                return;
+        }
+    }
+
+    private void NavigateMain_StartNext(string nextState)
+    {
+        switch (nextState)               // initialize next state
+        {
+            case "PROFILE":
+                UserData.GetComponent<ScrollRect>().content = (RectTransform)MainGrid.transform;
+                MainGrid.SetActive(true);
+                return;
+            case "ROOM":
+                UserData.GetComponent<ScrollRect>().content = (RectTransform)RoomGrid.transform;
+                RoomGrid.SetActive(true);
+                return;
+            case "PERSON":
+                UserData.GetComponent<ScrollRect>().content = (RectTransform)PersonGrid.transform;
+                PersonGrid.SetActive(true);
+                return;
+        }
+    }
+
+    public void NavigateEdit(bool saveChanges)
+    {
+        editingActive = !editingActive;
+
+        if (editingActive)                   // turning EDIT ON
+        {
+            NavigateEdit_EditON();
+
+            ButtonEdit.gameObject.SetActive(false);
+            ButtonSave.gameObject.SetActive(true);
+            ButtonCancel.gameObject.SetActive(true);
+            MenuTop.gameObject.SetActive(false);
+            MenuBottom.gameObject.SetActive(false);
+        }
+        else                            // turning EDIT OFF
+        {
+            if (saveChanges)            // SAVE if needed
+            {
+                NavigateEdit_Save();
+            }
+
+            // WAIT until changes are saved
+
+            NavigateEdit_EditOFF();
+
+            ButtonEdit.gameObject.SetActive(true);
+            ButtonSave.gameObject.SetActive(false);
+            ButtonCancel.gameObject.SetActive(false);
+            MenuTop.gameObject.SetActive(true);
+            MenuBottom.gameObject.SetActive(true);
+        }
+
+        scrollRect.normalizedPosition = new Vector2(0, 1);
+    }
+
+    private void NavigateEdit_EditON()
+    {       
+        switch (currentState)
+        {
+            case "PROFILE":
+                UserData.GetComponent<ScrollRect>().content = (RectTransform)EditUserGrid.transform;
+                MainGrid.SetActive(false);
+                EditUserGrid.SetActive(true);
+                return;
+            case "ROOM":
+                RoomGrid.GetComponent<GridScript>().ActivateEdit();
+                return;
+            case "PERSON":
+                PersonGrid.GetComponent<GridScript>().ActivateEdit();
+                return;
+        }
+    }
+
+    private void NavigateEdit_EditOFF()
+    {
+        switch (currentState)
+        {
+            case "PROFILE":
+                UserData.GetComponent<ScrollRect>().content = (RectTransform)MainGrid.transform;
+                MainGrid.SetActive(true);
+                EditUserGrid.SetActive(false);
+                return;
+            case "ROOM":
+                RoomGrid.GetComponent<GridScript>().CancelEdit();
+                return;
+            case "PERSON":
+                PersonGrid.GetComponent<GridScript>().CancelEdit();
+                return;
+        }
+    }
+
+    private void NavigateEdit_Save()
+    {
+        switch (currentState)
+        {
+            case "PROFILE":
+                // nedostaje
+                return;
+            case "ROOM":
+                RoomGrid.GetComponent<GridScript>().SaveChanges();
+                return;
+            case "PERSON":
+                PersonGrid.GetComponent<GridScript>().SaveChanges();
+                return;
+        }
+    }
+
     public void RandomizeGrid()
     {
-        if(roomActive)
+        switch (currentState)
         {
-            RoomGrid.GetComponent<GridScript>().RandomSelection();
+            case "ROOM":
+                RoomGrid.GetComponent<GridScript>().RandomSelection();
+                return;
+            case "PERSON":
+                PersonGrid.GetComponent<GridScript>().RandomSelection();
+                return;
         }
-        else if (personActive)
-        {
-            PersonGrid.GetComponent<GridScript>().RandomSelection();
-        }
-    }
-
-    public void ClickEdit()
-    {
-        if(mainActive)
-        {
-            UserData.GetComponent<ScrollRect>().content = (RectTransform)EditUserGrid.transform;
-            MainGrid.SetActive(false);
-            EditUserGrid.SetActive(true);
-        }
-        else if (roomActive)
-        {
-            RoomGrid.GetComponent<GridScript>().ActivateEdit();
-        }
-        else if (personActive)
-        {
-            PersonGrid.GetComponent<GridScript>().ActivateEdit();
-        }
-
-        ButtonEdit.gameObject.SetActive(false);
-        ButtonSave.gameObject.SetActive(true);
-        ButtonCancel.gameObject.SetActive(true);
-
-        MenuTop.gameObject.SetActive(false);
-        MenuBottom.gameObject.SetActive(false);
-    }
-
-    public void ClickSave()
-    {
-        if (mainActive)
-        {
-            UserData.GetComponent<ScrollRect>().content = (RectTransform)MainGrid.transform;
-            MainGrid.SetActive(true);
-            EditUserGrid.SetActive(false);
-        }
-        else if (roomActive)
-        {
-            RoomGrid.GetComponent<GridScript>().SaveChanges();
-        }
-        else if (personActive)
-        {
-            PersonGrid.GetComponent<GridScript>().SaveChanges();
-        }
-
-        ButtonEdit.gameObject.SetActive(true);
-        ButtonSave.gameObject.SetActive(false);
-        ButtonCancel.gameObject.SetActive(false);
-
-        MenuTop.gameObject.SetActive(true);
-        MenuBottom.gameObject.SetActive(true);
-    }
-
-    public void ClickCancel()
-    {
-        if (mainActive)
-        {
-            UserData.GetComponent<ScrollRect>().content = (RectTransform)MainGrid.transform;
-            MainGrid.SetActive(true);
-            EditUserGrid.SetActive(false);
-        }
-        else if (roomActive)
-        {
-            RoomGrid.GetComponent<GridScript>().CancelEdit();
-        }
-        else if (personActive)
-        {
-            PersonGrid.GetComponent<GridScript>().CancelEdit();
-        }
-
-        ButtonEdit.gameObject.SetActive(true);
-        ButtonSave.gameObject.SetActive(false);
-        ButtonCancel.gameObject.SetActive(false);
-
-        MenuTop.gameObject.SetActive(true);
-        MenuBottom.gameObject.SetActive(true);
-    }
-
-    private void SwitchToMain()
-    {
-        UserData.GetComponent<ScrollRect>().content = (RectTransform)MainGrid.transform;
-        MainGrid.SetActive(true);
-        EditUserGrid.SetActive(false);
-        RoomGrid.SetActive(false);
-        PersonGrid.SetActive(false);
-
-        ButtonEdit.gameObject.SetActive(true);
-        ButtonSave.gameObject.SetActive(false);
-        ButtonCancel.gameObject.SetActive(false);
-        
-        mainActive = true;
-        roomActive = false;
-        personActive = false;
-    }
-
-    private void SwitchToRoom()
-    {
-        UserData.GetComponent<ScrollRect>().content = (RectTransform)RoomGrid.transform;
-        MainGrid.SetActive(false);
-        EditUserGrid.SetActive(false);
-        RoomGrid.SetActive(true);
-        PersonGrid.SetActive(false);
-
-        ButtonEdit.gameObject.SetActive(true);
-        ButtonSave.gameObject.SetActive(false);
-        ButtonCancel.gameObject.SetActive(false);
-
-        mainActive = false;
-        roomActive = true;
-        personActive = false;
-    }
-
-    private void SwitchToPerson()
-    {
-        UserData.GetComponent<ScrollRect>().content = (RectTransform)PersonGrid.transform;
-        MainGrid.SetActive(false);
-        EditUserGrid.SetActive(false);
-        RoomGrid.SetActive(false);
-        PersonGrid.SetActive(true);
-
-        ButtonEdit.gameObject.SetActive(true);
-        ButtonSave.gameObject.SetActive(false);
-        ButtonCancel.gameObject.SetActive(false);
-
-        mainActive = false;
-        roomActive = false;
-        personActive = true;
     }
 }

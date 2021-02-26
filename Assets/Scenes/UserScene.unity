@@ -607,11 +607,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1729355071}
     - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SwitchInputFields
+      value: NavigateEdit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684435, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
@@ -920,11 +930,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1729355071}
     - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SwitchInputFields
+      value: NavigateEdit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684435, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
@@ -3042,6 +3057,9 @@ MonoBehaviour:
   ButtonRandom: {fileID: 1770878059}
   MenuTop: {fileID: 2075128712}
   MenuBottom: {fileID: 1192677365}
+  scrollRect: {fileID: 1554678354}
+  currentState: 
+  editingActive: 0
 --- !u!114 &1729355072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3214,11 +3232,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1729355071}
     - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SwitchInputFields
+      value: NavigateEdit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684435, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
@@ -3459,6 +3482,66 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MenuTop
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455448871533756041, guid: 64931c0758b9dcc408e84e328d043589,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1729355071}
+    - target: {fileID: 2455448871533756041, guid: 64931c0758b9dcc408e84e328d043589,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NavigateMain
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455448871533756041, guid: 64931c0758b9dcc408e84e328d043589,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455448871533756041, guid: 64931c0758b9dcc408e84e328d043589,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: PERSON
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473013437534161751, guid: 64931c0758b9dcc408e84e328d043589,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1729355071}
+    - target: {fileID: 5473013437534161751, guid: 64931c0758b9dcc408e84e328d043589,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NavigateMain
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473013437534161751, guid: 64931c0758b9dcc408e84e328d043589,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473013437534161751, guid: 64931c0758b9dcc408e84e328d043589,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: ROOM
+      objectReference: {fileID: 0}
+    - target: {fileID: 6210932249944110097, guid: 64931c0758b9dcc408e84e328d043589,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1729355071}
+    - target: {fileID: 6210932249944110097, guid: 64931c0758b9dcc408e84e328d043589,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NavigateMain
+      objectReference: {fileID: 0}
+    - target: {fileID: 6210932249944110097, guid: 64931c0758b9dcc408e84e328d043589,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6210932249944110097, guid: 64931c0758b9dcc408e84e328d043589,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: PROFILE
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64931c0758b9dcc408e84e328d043589, type: 3}
