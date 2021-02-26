@@ -33,10 +33,10 @@ public class UserNavigation : MonoBehaviour
     [SerializeField]
     private bool editingActive;
 
-    private void Start()
+    public void InitializeSceneNavigation()
     {
         ButtonRandom.onClick.AddListener(RandomizeGrid);
-        
+
         currentState = "PROFILE";
 
         NavigateMain("PROFILE");

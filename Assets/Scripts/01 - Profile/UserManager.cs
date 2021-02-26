@@ -4,10 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class MyProfileManager : MonoBehaviour
+public class UserManager : MonoBehaviour
 {
     public string userID;   // testing
-    public bool testing = false;
 
     public TMP_Text name;
     public TMP_Text surname;
@@ -40,18 +39,10 @@ public class MyProfileManager : MonoBehaviour
 
     private bool loading = false;
 
-    private void Start()
+    public void LoadScene()
     {
-        
+        StartCoroutine(LoadData());
     }
-
-    /*public void LoadScene()
-    {
-        if (testing)
-        {
-            StartCoroutine(LoadData());
-        }
-    }*/
 
     IEnumerator LoadData()
     {
@@ -59,13 +50,11 @@ public class MyProfileManager : MonoBehaviour
         gameObject.GetComponent<DatabaseManager>().FetchStudentMain(userID);
         
         yield return new WaitWhile(() => loading == true);
-        Debug.Log("Done1");
 
         loading = true;
         gameObject.GetComponent<DatabaseManager>().FetchStudentAlgo(userID);
 
         yield return new WaitWhile(() => loading == true);
-        Debug.Log("Done2");
     }
 
     public void LoadStudentMainFromDatabase(StudentMain studentMain)

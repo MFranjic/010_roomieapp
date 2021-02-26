@@ -8,11 +8,11 @@ public class DatabaseManager : MonoBehaviour
 {
     private DatabaseReference database;
 
-    private void Start()
+    public void FindDatabase()
     {
         database = FirebaseDatabase.DefaultInstance.RootReference;
-
     }
+
 
     public void FetchStudentMain(string id)
     {       
@@ -40,7 +40,7 @@ public class DatabaseManager : MonoBehaviour
             {
                 DataSnapshot snapshot = task.Result;
                 student = JsonUtility.FromJson<StudentMain>(snapshot.GetRawJsonValue());
-                gameObject.GetComponent<MyProfileManager>().LoadStudentMainFromDatabase(student);
+                gameObject.GetComponent<UserManager>().LoadStudentMainFromDatabase(student);
                 return;
             }
         });
@@ -66,7 +66,7 @@ public class DatabaseManager : MonoBehaviour
             {
                 DataSnapshot snapshot = task.Result;
                 student = JsonUtility.FromJson<StudentAlgo>(snapshot.GetRawJsonValue());
-                gameObject.GetComponent<MyProfileManager>().LoadStudentAlgoFromDatabase(student);
+                gameObject.GetComponent<UserManager>().LoadStudentAlgoFromDatabase(student);
                 return;
             }
         });

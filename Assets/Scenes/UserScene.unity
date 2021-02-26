@@ -2954,9 +2954,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1729355068}
+  - component: {fileID: 1729355073}
+  - component: {fileID: 1729355070}
   - component: {fileID: 1729355071}
   - component: {fileID: 1729355069}
-  - component: {fileID: 1729355070}
   - component: {fileID: 1729355072}
   m_Layer: 0
   m_Name: SceneManager
@@ -2992,7 +2993,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   userID: OliviaSchmidt
-  testing: 1
   name: {fileID: 1121534503}
   surname: {fileID: 1500668190}
   birthday: {fileID: 1177564509}
@@ -3073,6 +3073,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelOptionsPicker: {fileID: 1442416100}
+--- !u!114 &1729355073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729355067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dacc6ac4fcf0314b91dcfe28555fc19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testing: 1
 --- !u!114 &1737640188 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2669021809306390667, guid: 0e1fe9a46e6fd93428e0b0c90c30fbee,
