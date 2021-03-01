@@ -467,7 +467,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.6256675, g: 0.7169812, b: 0.69425714, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3085,7 +3085,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dacc6ac4fcf0314b91dcfe28555fc19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testing: 1
+  testing: 0
+  menuBottom: {fileID: 1192677365}
 --- !u!114 &1737640188 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2669021809306390667, guid: 0e1fe9a46e6fd93428e0b0c90c30fbee,
@@ -5899,8 +5900,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3952680023615336463, guid: 7f7ec901686ed4c4188912a3d1a75118,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 16.199951
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9216158591047376624, guid: 7f7ec901686ed4c4188912a3d1a75118,
         type: 3}

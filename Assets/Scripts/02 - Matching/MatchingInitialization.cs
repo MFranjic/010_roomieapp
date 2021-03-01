@@ -6,6 +6,8 @@ public class MatchingInitialization : MonoBehaviour
 {
     public bool testing = false;
 
+    public GameObject menuBottom;
+
     private void Start()
     {
         gameObject.GetComponent<DatabaseManager>().FindDatabase();
@@ -18,5 +20,6 @@ public class MatchingInitialization : MonoBehaviour
 
         // Initialize scene navigation
         gameObject.GetComponent<MatchingNavigation>().InitializeSceneNavigation();
+        menuBottom.GetComponent<AppNavigation>().InitializeAppNavigation("MATCHING");
     }
 }

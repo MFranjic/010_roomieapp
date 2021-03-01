@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9216158591047376625}
+  - component: {fileID: 8175254324247317602}
   m_Layer: 5
   m_Name: MenuBottom
   m_TagString: Untagged
@@ -40,6 +41,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 60}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &8175254324247317602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9216158591047376624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 037ab426fec01de458f269d4991c12d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NewsFeedButton: {fileID: 3952680023615336462}
+  MyProfileButton: {fileID: 3952680024563823745}
+  MatchingButton: {fileID: 3952680024115549804}
+  ApartmantsButton: {fileID: 3952680024664014175}
+  SettingsButton: {fileID: 3952680024665395388}
+  activatedButtonColor: {r: 0.3677137, g: 1, b: 0, a: 0}
 --- !u!1001 &9216158589941073406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50,7 +69,7 @@ PrefabInstance:
     - target: {fileID: 5277342326600684428, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
       propertyPath: m_Name
-      value: ButtonMenu03
+      value: MatchingButton
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684433, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
@@ -91,6 +110,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Colors.m_SelectedColor.a
       value: 0.70980394
+      objectReference: {fileID: 0}
+    - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8175254324247317602}
+    - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMatching
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684435, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
@@ -210,6 +239,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 9216158589941073406}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3952680024115549804 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
+    type: 3}
+  m_PrefabInstance: {fileID: 9216158589941073406}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9216158590450344860
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -220,14 +261,13 @@ PrefabInstance:
     - target: {fileID: 5277342326600684428, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
       propertyPath: m_Name
-      value: ButtonMenu01
+      value: FeedButton
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684433, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 64852813726ac394ea18d3b21579f24d,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684433, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
       propertyPath: m_Color.a
@@ -298,6 +338,16 @@ PrefabInstance:
       propertyPath: m_Colors.m_SelectedColor.a
       value: 0.70980394
       objectReference: {fileID: 0}
+    - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8175254324247317602}
+    - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetNewsFeed
+      objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684435, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -356,22 +406,22 @@ PrefabInstance:
     - target: {fileID: 5277342326600684435, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 16.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684435, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 7.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684435, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 40
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684435, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 40
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684435, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
@@ -416,6 +466,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 9216158590450344860}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3952680023615336462 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
+    type: 3}
+  m_PrefabInstance: {fileID: 9216158590450344860}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9216158591563312845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -426,7 +488,7 @@ PrefabInstance:
     - target: {fileID: 5277342326600684428, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
       propertyPath: m_Name
-      value: ButtonMenu03 (1)
+      value: ApartmantsButton
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684433, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
@@ -436,17 +498,17 @@ PrefabInstance:
     - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
       propertyPath: m_Colors.m_NormalColor.r
-      value: 0.40775186
+      value: 0.25075653
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
       propertyPath: m_Colors.m_NormalColor.g
-      value: 0.7264151
+      value: 0.46226418
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
       propertyPath: m_Colors.m_NormalColor.b
-      value: 0.7043799
+      value: 0.44920814
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
@@ -467,6 +529,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Colors.m_SelectedColor.a
       value: 0.70980394
+      objectReference: {fileID: 0}
+    - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8175254324247317602}
+    - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetApartments
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684435, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
@@ -586,6 +658,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 9216158591563312845}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3952680024664014175 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
+    type: 3}
+  m_PrefabInstance: {fileID: 9216158591563312845}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9216158591564399406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -596,7 +680,7 @@ PrefabInstance:
     - target: {fileID: 5277342326600684428, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
       propertyPath: m_Name
-      value: ButtonMenu03 (2)
+      value: SettingsButton
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684433, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
@@ -637,6 +721,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Colors.m_SelectedColor.a
       value: 0.70980394
+      objectReference: {fileID: 0}
+    - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8175254324247317602}
+    - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ActivateSettings
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684435, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
@@ -756,6 +850,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 9216158591564399406}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3952680024665395388 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
+    type: 3}
+  m_PrefabInstance: {fileID: 9216158591564399406}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9216158591663367955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -766,7 +872,7 @@ PrefabInstance:
     - target: {fileID: 5277342326600684428, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
       propertyPath: m_Name
-      value: ButtonMenu02
+      value: ProfileButton
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684433, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
@@ -776,17 +882,17 @@ PrefabInstance:
     - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
       propertyPath: m_Colors.m_NormalColor.r
-      value: 0.40775186
+      value: 0.25075653
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
       propertyPath: m_Colors.m_NormalColor.g
-      value: 0.7264151
+      value: 0.46226418
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
       propertyPath: m_Colors.m_NormalColor.b
-      value: 0.7043799
+      value: 0.44920814
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
@@ -807,6 +913,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Colors.m_SelectedColor.a
       value: 0.70980394
+      objectReference: {fileID: 0}
+    - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8175254324247317602}
+    - target: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMyProfile
       objectReference: {fileID: 0}
     - target: {fileID: 5277342326600684435, guid: 978a12f9f3f1abf4ebc787842013cd93,
         type: 3}
@@ -926,3 +1042,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 9216158591663367955}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3952680024563823745 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5277342326600684434, guid: 978a12f9f3f1abf4ebc787842013cd93,
+    type: 3}
+  m_PrefabInstance: {fileID: 9216158591663367955}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

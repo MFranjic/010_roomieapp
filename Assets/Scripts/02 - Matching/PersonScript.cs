@@ -47,6 +47,26 @@ public class PersonScript : MonoBehaviour
         percentageText.text = percentage.ToString("0.0") + " %";
     }
 
+    public bool TestFilter(string filterID)
+    {
+        bool filterPassed = false;
+        switch(filterID)
+        {
+            // filters
+        }
+
+        if(!filterPassed)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(true);
+        }
+
+        return filterPassed;
+    }
+
     public float GetPersonPercentage()
     {
         return percentage;
