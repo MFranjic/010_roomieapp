@@ -22,6 +22,7 @@ public class GridScript : MonoBehaviour
 
     public void SaveChanges()
     {
+        //StudentAlgo newAlgoData = new StudentAlgo();
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             gameObject.transform.GetChild(i).GetComponent<OptionsScript>().DisableOptions();
