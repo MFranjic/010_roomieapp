@@ -11,10 +11,6 @@ using System.Threading.Tasks;
 
 public class FetchUser : MonoBehaviour
 {
-    public TMP_Text nameTxt;
-    public TMP_Text surnameTxt;
-    public TMP_Text emailTxt;
-
     private DatabaseReference databaseReference;
 
     private void Start()
@@ -40,10 +36,6 @@ public class FetchUser : MonoBehaviour
                 User user = JsonUtility.FromJson<User>(snapshot.GetRawJsonValue());
 
                 Debug.Log(user.ToString());
-                
-                nameTxt.text = user.Name;              
-                surnameTxt.text = user.Surname;
-                emailTxt.text = user.Email;
             }
         });
     }

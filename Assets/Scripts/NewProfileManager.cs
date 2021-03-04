@@ -13,15 +13,6 @@ public class NewProfileManager : MonoBehaviour
         HideErrors();
     }
 
-    public void SaveProfile()
-    {
-        bool hasErrors = CheckForErrors();
-        if (!hasErrors)
-        {
-            
-        }
-    }
-
     private void HideErrors()
     {
         objectFitterVar = 0;
@@ -37,7 +28,7 @@ public class NewProfileManager : MonoBehaviour
         blockContainer.GetComponent<RectTransform>().sizeDelta = new Vector2(0, delta.y + objectFitterVar);
     }
 
-    private bool CheckForErrors()
+    public bool CheckForErrors()
     {
         objectFitterVar = 0;
         bool errorFound = false;
@@ -46,9 +37,10 @@ public class NewProfileManager : MonoBehaviour
         {
             if (blockContainer.transform.GetChild(i).gameObject.activeSelf && blockContainer.transform.GetChild(i).GetComponent<BlockScript>() != null)
             {
-                if (blockContainer.transform.GetChild(i).GetComponent<BlockScript>().CheckValidation())
+                if (!blockContainer.transform.GetChild(i).GetComponent<BlockScript>().CheckValidation())
                 {
                     errorFound = true;
+                    Debug.Log("Error found.");
                 }
             }
         }

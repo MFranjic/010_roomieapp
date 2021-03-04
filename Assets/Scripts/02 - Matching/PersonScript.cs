@@ -17,6 +17,17 @@ public class PersonScript : MonoBehaviour
     private float percentage;
     private string personID;
 
+    private void Start()
+    {
+        buttonLink.onClick.AddListener(OpenPersonDetails);
+    }
+
+    private void OpenPersonDetails()
+    {
+        //Debug.Log("Searching for: " + personID);
+        GameObject.Find("SceneManager").GetComponent<MatchingNavigation>().Navigate_Details(personID);
+    }
+
     public void SetPersonData(string personID, StudentQuick person)
     {
         this.personID = personID;

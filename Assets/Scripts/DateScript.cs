@@ -9,6 +9,8 @@ public class DateScript : MonoBehaviour
     public int startYear;
     public int endYear;
 
+    public GameObject ManagerObject;
+
     public string testText;
 
     private void Start()
@@ -35,6 +37,6 @@ public class DateScript : MonoBehaviour
         string year = yearDD.options[yearDD.value].text;
 
         string date = day + "/" + month + "/" + year;
-        GameObject.Find("SceneManager").GetComponent<DateManager>().SetDateOnSelected(date);
+        ManagerObject.GetComponent<DateManager>().SetDateOnSelected(date);
     }
 }

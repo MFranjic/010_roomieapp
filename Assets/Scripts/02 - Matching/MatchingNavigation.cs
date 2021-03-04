@@ -11,10 +11,14 @@ public class MatchingNavigation : MonoBehaviour
     public GameObject UserData;
 
     public GameObject SearchGrid;
+    public GameObject DetailsGrid;
     public GameObject MatchesGrid;
 
     public GameObject MenuTop;
     public GameObject MenuBottom;
+    public Button EditButton;
+    public Button SaveButton;
+    public Button CancelButton;
 
     public ScrollRect scrollRect;
 
@@ -23,6 +27,10 @@ public class MatchingNavigation : MonoBehaviour
 
     public void InitializeSceneNavigation()
     {
+        EditButton.gameObject.SetActive(false);
+        SaveButton.gameObject.SetActive(false);
+        CancelButton.gameObject.SetActive(false);
+
         currentState = "SEARCH";
 
         NavigateMain("SEARCH");
@@ -44,6 +52,10 @@ public class MatchingNavigation : MonoBehaviour
             case "SEARCH":
                 SearchGrid.SetActive(false);
                 return;
+            case "DETAILS":
+                DetailsGrid.SetActive(false);
+                CancelButton.gameObject.SetActive(false);
+                return;
             case "MATCHES":
                 MatchesGrid.SetActive(false);
                 return;
@@ -58,10 +70,22 @@ public class MatchingNavigation : MonoBehaviour
                 UserData.GetComponent<ScrollRect>().content = (RectTransform)SearchGrid.transform;
                 SearchGrid.SetActive(true);
                 return;
+            case "DETAILS":
+                UserData.GetComponent<ScrollRect>().content = (RectTransform)DetailsGrid.transform;
+                DetailsGrid.SetActive(true);
+                return;
             case "MATCHES":
                 UserData.GetComponent<ScrollRect>().content = (RectTransform)MatchesGrid.transform;
                 MatchesGrid.SetActive(true);
                 return;
         }
+    }
+
+    public void Navigate_Details(string userID)
+    {
+        NavigateMain("DETAILS");
+        DetailsGrid.GetComponent<DetailsScript>().LoadScene(userID);
+
+        CancelButton.gameObject.SetActive(true);
     }
 }

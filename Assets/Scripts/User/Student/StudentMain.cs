@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StudentMain
+public class StudentMain : ICloneable
 {
     public string Name;
     public string Surname;
@@ -56,6 +57,27 @@ public class StudentMain
         Photo = photo;
     }
 
+    public void ChangeStudentMain(string name, string surname, string gender, string birthday, string origin,
+                       string residence, string destination, string phone, string goal, string faculty, string work)
+    {
+        Name = name;
+        Surname = surname;
+        Gender = gender;
+        Birthday = birthday;
+        Origin = origin;
+        Residence = residence;
+        Destination = destination;
+        Phone = phone;
+        Goal = goal;
+        Faculty = faculty;
+        Work = work;
+    }
+
+    public object Clone()
+    {
+        return this.MemberwiseClone();
+    }
+
     public void AddDescription(string description)
     {
         Description = description;
@@ -64,6 +86,11 @@ public class StudentMain
     public void AddPhoto(string photoLink)
     {
         Photo = photoLink;
+    }
+
+    public void SetEmail(string email)
+    {
+        Email = email;
     }
 
     public string GetEmail()

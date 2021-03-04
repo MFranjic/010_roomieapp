@@ -33,18 +33,18 @@ public class UserNavigation : MonoBehaviour
     [SerializeField]
     private bool editingActive;
 
+    private bool saving = false;
+
     public void InitializeSceneNavigation()
     {
         ButtonRandom.onClick.AddListener(RandomizeGrid);
-
-        currentState = "PROFILE";
-
-        NavigateMain("PROFILE");
-
         ButtonSave.gameObject.SetActive(false);
         ButtonCancel.gameObject.SetActive(false);
         RoomGrid.GetComponent<GridScript>().CancelEdit();
         PersonGrid.GetComponent<GridScript>().CancelEdit();
+
+        // Initial navigation is: ROOM -> PERSON -> PROFILE
+        // Because of options loading
     }
 
     public void NavigateMain(string nextState)
@@ -67,6 +67,11 @@ public class UserNavigation : MonoBehaviour
                 RoomGrid.SetActive(false);
                 return;
             case "PERSON":
+                PersonGrid.SetActive(false);
+                return;
+            default:
+                MainGrid.SetActive(false);
+                RoomGrid.SetActive(false);
                 PersonGrid.SetActive(false);
                 return;
         }
@@ -109,18 +114,13 @@ public class UserNavigation : MonoBehaviour
         {
             if (saveChanges)            // SAVE if needed
             {
-                NavigateEdit_Save();
+                StartCoroutine(NavigateEdit_Save());
             }
-
-            // WAIT until changes are saved
-
-            NavigateEdit_EditOFF();
-
-            ButtonEdit.gameObject.SetActive(true);
-            ButtonSave.gameObject.SetActive(false);
-            ButtonCancel.gameObject.SetActive(false);
-            MenuTop.gameObject.SetActive(true);
-            MenuBottom.gameObject.SetActive(true);
+            else
+            {
+                NavigateEdit_Cancel();
+                ButtonsBackToNormal();
+            }         
         }
 
         scrollRect.normalizedPosition = new Vector2(0, 1);
@@ -144,11 +144,12 @@ public class UserNavigation : MonoBehaviour
         }
     }
 
-    private void NavigateEdit_EditOFF()
+    private void NavigateEdit_Cancel()
     {
         switch (currentState)
         {
             case "PROFILE":
+                EditUserGrid.GetComponent<EditMainData>().CancelMainDataChanges();
                 UserData.GetComponent<ScrollRect>().content = (RectTransform)MainGrid.transform;
                 MainGrid.SetActive(true);
                 EditUserGrid.SetActive(false);
@@ -162,20 +163,49 @@ public class UserNavigation : MonoBehaviour
         }
     }
 
-    private void NavigateEdit_Save()
+    IEnumerator NavigateEdit_Save()
     {
-        switch (currentState)
+        if (currentState == "PROFILE")
         {
-            case "PROFILE":
-                // nedostaje
-                return;
-            case "ROOM":
-                RoomGrid.GetComponent<GridScript>().SaveChanges();
-                return;
-            case "PERSON":
-                PersonGrid.GetComponent<GridScript>().SaveChanges();
-                return;
+            if (!EditUserGrid.GetComponent<NewProfileManager>().CheckForErrors())
+            {
+                saving = true;
+
+                EditUserGrid.GetComponent<EditMainData>().SaveMainDataChanges();
+                yield return new WaitWhile(() => saving == true);
+
+                UserData.GetComponent<ScrollRect>().content = (RectTransform)MainGrid.transform;
+                MainGrid.SetActive(true);
+                EditUserGrid.SetActive(false);
+
+                gameObject.GetComponent<UserManager>().LoadScene();
+                ButtonsBackToNormal();
+            }
         }
+        else if (currentState == "ROOM")
+        {
+            RoomGrid.GetComponent<GridScript>().SaveChanges();
+            ButtonsBackToNormal();
+        }
+        else if (currentState == "PERSON")
+        {
+            PersonGrid.GetComponent<GridScript>().SaveChanges();
+            ButtonsBackToNormal();
+        }     
+    }
+
+    private void ButtonsBackToNormal()
+    {
+        ButtonEdit.gameObject.SetActive(true);
+        ButtonSave.gameObject.SetActive(false);
+        ButtonCancel.gameObject.SetActive(false);
+        MenuTop.gameObject.SetActive(true);
+        MenuBottom.gameObject.SetActive(true);
+    }
+
+    public void SaveDone()
+    {
+        saving = false;
     }
 
     public void RandomizeGrid()

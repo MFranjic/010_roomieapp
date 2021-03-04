@@ -12,34 +12,30 @@ public class AppNavigation : MonoBehaviour
     public Button ApartmantsButton;
     public Button SettingsButton;
 
-    public Color activatedButtonColor;
+    public Sprite MyProfileON;
+    public Sprite MyProfileOFF;
+    public Sprite MatchingON;
+    public Sprite MatchingOFF;
 
     public void InitializeAppNavigation(string sceneID)
     {
         switch(sceneID)
         {
             case "FEED":
-                SetButtonColor(NewsFeedButton);
+                //SetButtonColor(NewsFeedButton);
                 return;
             case "PROFILE":
-                SetButtonColor(MyProfileButton);
+                MyProfileButton.GetComponent<Button>().image.sprite = MyProfileON;
+                MatchingButton.GetComponent<Button>().image.sprite = MatchingOFF;
                 return;
             case "MATCHING":
-                SetButtonColor(MatchingButton);
+                MyProfileButton.GetComponent<Button>().image.sprite = MyProfileOFF;
+                MatchingButton.GetComponent<Button>().image.sprite = MatchingON;
                 return;
             case "APARTMANTS":
-                SetButtonColor(ApartmantsButton);
+                //SetButtonColor(ApartmantsButton);
                 return;
         }
-    }
-
-    private void SetButtonColor(Button button)
-    {
-        button.gameObject.GetComponent<Image>().color = activatedButtonColor;
-        Canvas.ForceUpdateCanvases();
-        /*var colors = button.colors;
-        colors.normalColor = activatedButtonColor;
-        button.colors = colors;*/
     }
 
     public void ActivateSettings()

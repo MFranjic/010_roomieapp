@@ -74,7 +74,8 @@ public class RandomInfo : MonoBehaviour
     {
         // GENDER
         int genderIndex = GenerateIndex(genderBlock.GetComponent<BlockScript>().GetDropdownSize());
-        gender = genderBlock.GetComponent<BlockScript>().SetIntData(genderIndex);
+        genderBlock.GetComponent<BlockScript>().SetIntData(genderIndex);
+        gender = genderIndex.ToString();
 
         // NAME     
         if (genderIndex != 0)
@@ -97,15 +98,18 @@ public class RandomInfo : MonoBehaviour
 
         // ORIGIN
         int originIndex = GenerateIndex(originBlock.GetComponent<BlockScript>().GetDropdownSize());
-        origin = originBlock.GetComponent<BlockScript>().SetIntData(originIndex);
+        originBlock.GetComponent<BlockScript>().SetIntData(originIndex);
+        origin = originIndex.ToString();
 
         // HOME
         int homeIndex = GenerateIndex(homeBlock.GetComponent<BlockScript>().GetDropdownSize());
-        home = homeBlock.GetComponent<BlockScript>().SetIntData(homeIndex);
+        homeBlock.GetComponent<BlockScript>().SetIntData(homeIndex);
+        home = homeIndex.ToString();
 
         // DESTINATION
         int destinationIndex = GenerateIndex(destinationBlock.GetComponent<BlockScript>().GetDropdownSize());
-        destination = destinationBlock.GetComponent<BlockScript>().SetIntData(destinationIndex);
+        destinationBlock.GetComponent<BlockScript>().SetIntData(destinationIndex);
+        destination = destinationIndex.ToString();
 
         // PHONE
         phone = GeneratePhoneNumber(phoneNumberLength);
@@ -120,7 +124,8 @@ public class RandomInfo : MonoBehaviour
         if (whatYouDoIndex == 0 || whatYouDoIndex == 2)
         {
             int studyIndex = GenerateIndex(studyBlock.GetComponent<BlockScript>().GetDropdownSize());
-            study = studyBlock.GetComponent<BlockScript>().SetIntData(studyIndex);
+            studyBlock.GetComponent<BlockScript>().SetIntData(studyIndex);
+            study = studyIndex.ToString();
         }
 
         // WORK
@@ -170,8 +175,7 @@ public class RandomInfo : MonoBehaviour
     }
 
     private string GenerateNameMale()
-    {
-        
+    {      
         int i = rnd.Next(namesMale.Length);
         return namesMale[i];
     }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1017228920875572739}
   - component: {fileID: 1017228920875572798}
   - component: {fileID: 1017228920875572796}
+  - component: {fileID: 8916856847449681767}
   m_Layer: 5
   m_Name: GridPool
   m_TagString: Untagged
@@ -72,6 +73,20 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!114 &8916856847449681767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017228920875572738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f0a8540fcf54042adb03bc28a58fb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  personPrefab: {fileID: 0}
+  spawnPoint: {fileID: 0}
 --- !u!1001 &70904343667144208
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79,6 +94,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1017228920875572739}
     m_Modifications:
+    - target: {fileID: 959477747131606884, guid: 723bba2d4d9cc1f4688add0a8f54ece2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 959477747131606884, guid: 723bba2d4d9cc1f4688add0a8f54ece2,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 340
+      objectReference: {fileID: 0}
+    - target: {fileID: 959477747131606884, guid: 723bba2d4d9cc1f4688add0a8f54ece2,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1599758021275704944, guid: 723bba2d4d9cc1f4688add0a8f54ece2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -198,6 +228,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213388006177569468, guid: 723bba2d4d9cc1f4688add0a8f54ece2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809364421674395328, guid: 723bba2d4d9cc1f4688add0a8f54ece2,
+        type: 3}
+      propertyPath: m_Spacing.x
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809364421674395328, guid: 723bba2d4d9cc1f4688add0a8f54ece2,
+        type: 3}
+      propertyPath: m_Spacing.y
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809364421674395328, guid: 723bba2d4d9cc1f4688add0a8f54ece2,
+        type: 3}
+      propertyPath: m_Padding.m_Left
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6042893663065535997, guid: 723bba2d4d9cc1f4688add0a8f54ece2,
         type: 3}

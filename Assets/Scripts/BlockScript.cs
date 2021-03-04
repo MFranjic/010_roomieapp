@@ -17,6 +17,8 @@ public class BlockScript : MonoBehaviour
     private string text;
     private bool errorUp = true;
 
+    public GameObject ManagerObject;
+
     private void Start()
     {
         errorText.text = errorMessage;      
@@ -48,7 +50,7 @@ public class BlockScript : MonoBehaviour
         }
         else                                                            // Study & work block
         {
-            if (GameObject.Find("SceneManager").GetComponent<StudyWorkManager>().ValidateData(gameObject))
+            if (ManagerObject.GetComponent<StudyWorkManager>().ValidateData(gameObject))
             {
                 validated = true;
             }
@@ -74,7 +76,7 @@ public class BlockScript : MonoBehaviour
             
             if (gameObject.activeSelf)
             {
-                GameObject.Find("SceneManager").GetComponent<NewProfileManager>().ChangeSize(-errorHeight);
+                ManagerObject.GetComponent<NewProfileManager>().ChangeSize(-errorHeight);
             }
 
             errorText.gameObject.SetActive(false);
@@ -88,7 +90,7 @@ public class BlockScript : MonoBehaviour
         {
             Vector2 delta = gameObject.GetComponent<RectTransform>().sizeDelta;
             gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(delta.x, delta.y + errorHeight);
-            GameObject.Find("SceneManager").GetComponent<NewProfileManager>().ChangeSize(errorHeight);
+            ManagerObject.GetComponent<NewProfileManager>().ChangeSize(errorHeight);
 
             errorText.gameObject.SetActive(true);
             errorUp = true;
@@ -105,7 +107,20 @@ public class BlockScript : MonoBehaviour
         {
             dataField.GetComponent<DateValidation>().dateText.text = stringData;
         }
+    }
 
+    public string GetStringData()
+    {
+        string stringData = "";
+        if (dataField.GetComponent<TMP_InputField>())                   // Text input fields
+        {
+            stringData = dataField.GetComponent<TMP_InputField>().text;
+        }
+        else if (dataField.GetComponent<Button>())                      // Date choosing field
+        {
+            stringData = dataField.GetComponent<DateValidation>().dateText.text;
+        }
+        return stringData;
     }
 
     public string SetIntData(int intData)
@@ -120,18 +135,36 @@ public class BlockScript : MonoBehaviour
         {
             if (intData == 0)
             {
-                GameObject.Find("SceneManager").GetComponent<StudyWorkManager>().activateStudy();
+                ManagerObject.GetComponent<StudyWorkManager>().InitializeStudy();
+                dataAtValue = "Studying";
             }
             else if (intData == 1)
             {
-                GameObject.Find("SceneManager").GetComponent<StudyWorkManager>().activateWork();
+                ManagerObject.GetComponent<StudyWorkManager>().InitializeWork();
+                dataAtValue = "Working";
             }
             else if (intData == 2)
             {
-                GameObject.Find("SceneManager").GetComponent<StudyWorkManager>().activateBoth();
+                ManagerObject.GetComponent<StudyWorkManager>().InitializeBoth();
+                dataAtValue = "Studying & working";
             }
         }
         return dataAtValue;
+    }
+
+    public string GetIntData()
+    {
+        int intData = 0;
+        if (dataField.GetComponent<TMP_Dropdown>())                     // Dropdown fields
+        {
+            intData = dataField.GetComponent<TMP_Dropdown>().value - 1;
+        }
+        else                                                            // Study & work block
+        {
+            intData = ManagerObject.GetComponent<StudyWorkManager>().CheckStudyWorkBlock();
+        }
+
+        return intData.ToString();
     }
 
     public int GetDropdownSize()

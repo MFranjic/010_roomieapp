@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6969562, g: 0.7735849, b: 0.7735849, a: 1}
+  m_Color: {r: 0.6969562, g: 0.7735849, b: 0.7735849, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -460,6 +460,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Person
+      objectReference: {fileID: 0}
+    - target: {fileID: 7452217093175965736, guid: 61c4d6f508ffe724390f996d5aeaa833,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8216627805557583270, guid: 61c4d6f508ffe724390f996d5aeaa833,
         type: 3}

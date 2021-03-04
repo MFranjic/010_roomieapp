@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StudentQuick : MonoBehaviour
+public class StudentQuick
 {
     public string Name;
     public string Country;
@@ -18,6 +18,11 @@ public class StudentQuick : MonoBehaviour
         Country = country;
         Age = age;
         Gender = gender;
+    }
+
+    public void SetEmail(string email)
+    {
+        Email = email;
     }
 
     public string GetEmail()

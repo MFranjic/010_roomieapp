@@ -31,6 +31,8 @@ public class OptionsScreen : MonoBehaviour
     private int maxOptions;
     private string[] itemNames;
 
+    private List<string> oldOptions;
+
     private void Start()
     {
         scrollView = transform.GetChild(2).gameObject;
@@ -42,19 +44,21 @@ public class OptionsScreen : MonoBehaviour
 
         itemNames = items;
         maxOptions = maxItems;
-        if (currentOptions.Count == 0)
+
+        activeOptions = new List<string>();
+        if (currentOptions != null)
         {
-            activeOptions = currentOptions;
-            currentNumber = 0;
+            foreach (string option in currentOptions)
+            {
+                activeOptions.Add(option);
+            }
         }
-        else
-        {
-            activeOptions = currentOptions;
-            currentNumber = activeOptions.Count;
-        }       
+        currentNumber = activeOptions.Count;
+      
         title.text = titleText;
 
         FillListWithItems();
+        //InitializeOldOptions();
     }
 
     private void FillListWithItems()
@@ -98,7 +102,7 @@ public class OptionsScreen : MonoBehaviour
             selectedOption.GetComponent<ItemDetails>().Deactivate();
             activeOptions.Remove(selectedOption.GetComponent<ItemDetails>().text.text);
             currentNumber--;
-            Debug.Log(activeOptions.Count);
+            //Debug.Log(activeOptions.Count);
         }
         else
         {
@@ -116,7 +120,7 @@ public class OptionsScreen : MonoBehaviour
                 selectedOption.GetComponent<ItemDetails>().Activate();
                 activeOptions.Add(selectedOption.GetComponent<ItemDetails>().text.text);
                 currentNumber++;
-                Debug.Log(activeOptions.Count);
+                //Debug.Log(activeOptions.Count);
             }
             else
             {
@@ -125,7 +129,7 @@ public class OptionsScreen : MonoBehaviour
                     selectedOption.GetComponent<ItemDetails>().Activate();
                     activeOptions.Add(selectedOption.GetComponent<ItemDetails>().text.text);
                     currentNumber++;
-                    Debug.Log(activeOptions.Count);
+                    //Debug.Log(activeOptions.Count);
                 }
                 else
                 {
@@ -147,10 +151,28 @@ public class OptionsScreen : MonoBehaviour
             Debug.Log("No options chosen");
             // error - no options chosen
         }
-    }
+    }  
 
     public void CancelOptions()
     {
+        //Debug.Log("Rolling back...");
+        //RollBackChanges();
         GameObject.Find("SceneManager").GetComponent<OptionsManager>().CancelOptionsPicker();
+    }
+
+    private void RollBackChanges()
+    {
+        activeOptions = oldOptions;
+        currentNumber = activeOptions.Count;
+        InitializeOldOptions();
+    }
+
+    private void InitializeOldOptions()
+    {
+        oldOptions = new List<string>();
+        foreach (string option in activeOptions)
+        {
+            oldOptions.Add(option);
+        }
     }
 }

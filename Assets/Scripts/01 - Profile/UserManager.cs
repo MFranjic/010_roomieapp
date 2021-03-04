@@ -26,18 +26,14 @@ public class UserManager : MonoBehaviour
     public TMP_Text guests;
     public TMP_Text description;
 
-    public GameObject budgetBlock;
-    public GameObject typeBlock;
-    public GameObject locationBlock;
-    public GameObject rulesBlock;
-
-    public GameObject interestsBlock;
-    public GameObject languagesBlock;
-    public GameObject myHobbiesBlock;
-    public GameObject yourHobbiesBlock;
-    public GameObject activitiesBlock;
+    public GameObject EditUserGrid;
+    public GameObject RoomGrid;
+    public GameObject PersonGrid;
 
     private bool loading = false;
+
+    private StudentAlgo studentAlgo;
+    private StudentMain studentMain;
 
     public void LoadScene()
     {
@@ -52,6 +48,7 @@ public class UserManager : MonoBehaviour
         yield return new WaitWhile(() => loading == true);
 
         loading = true;
+        //Debug.Log("Fetching algo...");
         gameObject.GetComponent<DatabaseManager>().FetchStudentAlgo(userID);
 
         yield return new WaitWhile(() => loading == true);
@@ -59,39 +56,62 @@ public class UserManager : MonoBehaviour
 
     public void LoadStudentMainFromDatabase(StudentMain studentMain)
     {
-        //Debug.Log(studentMain.Name);
         LoadSceneMainInfo(studentMain);
+        //Debug.Log("Loaded main.");
         loading = false;
     }
 
     public void LoadStudentAlgoFromDatabase(StudentAlgo studentAlgo)
     {
-        //Debug.Log(studentMain.Name);
-        LoadSceneAlgoInfo(studentAlgo);
+        LoadSceneAlgoInfo(studentAlgo);        
         loading = false;
+    }
+
+    public StudentAlgo FetchStudentAlgo()
+    {
+        return studentAlgo;
+    }
+
+    public StudentMain FetchStudentMain()
+    {
+        return studentMain;
     }
 
     private void LoadSceneMainInfo(StudentMain student)
     {
+        studentMain = student;
+
         name.text = student.Name;
         surname.text = student.Surname;
         birthday.text = student.Birthday;
-        gender.text = student.Gender;
-        origin.text = student.Origin;
-        residence.text = student.Residence;
-        mobilityLocation.text = student.Destination;
         phone.text = student.Phone;
-        email.text = userID;
-        study.text = student.Faculty;
+        email.text = student.GetEmail();
         work.text = student.Work;
         description.text = student.Description;
+       
+        EditUserGrid.GetComponent<EditMainData>().FillInMainData(student);
     }
 
     private void LoadSceneAlgoInfo(StudentAlgo student)
-    {
+    {       
+        studentAlgo = student;      
+
         languages.text = student.Languages;
-        pets.text = student.Pets;
-        guests.text = student.Guests;
-        smoking.text = student.Smoking;
+
+        student.ParsePrio();
+        gameObject.GetComponent<UserNavigation>().NavigateMain("ROOM");
+        RoomGrid.GetComponent<GridScript>().LoadAlgoData(student);
+        gameObject.GetComponent<UserNavigation>().NavigateMain("PERSON");
+        PersonGrid.GetComponent<GridScript>().LoadAlgoData(student);
+        gameObject.GetComponent<UserNavigation>().NavigateMain("PROFILE");
+
+        EditUserGrid.SetActive(true);
+        EditUserGrid.GetComponent<EditMainData>().FillInAlgoData(student);
+        EditUserGrid.SetActive(false);
+    }
+
+    public void SetSavingCompleted()
+    {
+        EditUserGrid.GetComponent<EditMainData>().SavingDone();
     }
 }

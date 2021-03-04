@@ -24,8 +24,25 @@ public class StudyWorkManager : MonoBehaviour
 
     private void Start()
     {
-        studyBlock.gameObject.SetActive(false);
-        workBlock.gameObject.SetActive(false);
+        //studyBlock.gameObject.SetActive(false);
+        //workBlock.gameObject.SetActive(false);
+    }
+
+    public int CheckStudyWorkBlock()
+    {
+        if (studyChosen && !workChosen)
+        {
+            return 0;
+        }           
+        else if (!studyChosen && workChosen)
+        {
+            return 1;
+        }           
+        else
+        {
+            return 2;
+        }
+            
     }
 
     public bool ValidateData(GameObject studyWorkBlock)
@@ -40,6 +57,63 @@ public class StudyWorkManager : MonoBehaviour
         {
             return true;
         }
+    }
+
+    public void InitializeStudy()
+    {
+        if (!studyChosen)
+        {
+            studyChosen = true;
+            studyBlock.gameObject.SetActive(true);
+            changeContainerSize(studyBlock, true);
+        }
+        buttonStudy.GetComponent<Image>().color = clickedColor;
+
+        if (workChosen)
+        {
+            workChosen = false;
+            workBlock.gameObject.SetActive(false);
+            changeContainerSize(workBlock, false);
+        }       
+        buttonWork.GetComponent<Image>().color = normalColor;
+    }
+
+    public void InitializeWork()
+    {
+        if (!workChosen)
+        {
+            workChosen = true;
+            workBlock.gameObject.SetActive(true);
+            changeContainerSize(workBlock, true);
+        }      
+        buttonWork.GetComponent<Image>().color = clickedColor;
+
+        if (studyChosen)
+        {
+            studyChosen = false;
+            studyBlock.gameObject.SetActive(false);
+            changeContainerSize(studyBlock, false);
+        }       
+        buttonStudy.GetComponent<Image>().color = normalColor;
+    }
+
+    public void InitializeBoth()
+    {
+        if (!studyChosen)
+        {
+            studyChosen = true;
+            studyBlock.gameObject.SetActive(true);
+            changeContainerSize(studyBlock, true);
+        }       
+        buttonStudy.GetComponent<Image>().color = clickedColor;
+
+        if (!workChosen)
+        {
+            workChosen = true;
+            workBlock.gameObject.SetActive(true);
+            changeContainerSize(workBlock, true);
+        }       
+        buttonWork.GetComponent<Image>().color = clickedColor;
     }
 
     public void activateStudy()
