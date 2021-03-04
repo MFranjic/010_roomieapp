@@ -5,25 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Authentication/StartScene.unity
     guid: f1a30dbf6d623bf44a9f47ded966f786
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Authentication/SignInScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Authentication/SignUpScene.unity
     guid: 109812b9f002e9a42b10eb98aed657f9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Authentication/MainScene.unity
     guid: 2dafa245686833e44b6bcc602322d820
   - enabled: 0
     path: Assets/Scenes/Testing.unity
     guid: eb36035a60db2e54fbd2a0b5d04e1204
   - enabled: 1
-    path: Assets/Scenes/MatchingScene.unity
-    guid: 0be8b3a1320a27e40b43cd039e5b505b
-  - enabled: 1
     path: Assets/Scenes/UserScene.unity
     guid: 8d0f082ae2ce645489a77cf515777ba9
+  - enabled: 1
+    path: Assets/Scenes/MatchingScene.unity
+    guid: 0be8b3a1320a27e40b43cd039e5b505b
   m_configObjects: {}

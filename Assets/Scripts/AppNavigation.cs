@@ -38,6 +38,11 @@ public class AppNavigation : MonoBehaviour
         }
     }
 
+    public void QuitApp()
+    {
+        Application.Quit();
+    }
+
     public void ActivateSettings()
     {
 
