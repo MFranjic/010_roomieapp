@@ -88,4 +88,14 @@ public class MatchingNavigation : MonoBehaviour
 
         CancelButton.gameObject.SetActive(true);
     }
+
+    public void SendPin(string reciever)
+    {
+        MatchesGrid.GetComponent<MatchingDB>().Pin(gameObject.GetComponent<MatchingManager>().GetCurrentUser(), reciever);
+    }
+
+    public void SendRequest(string reciever)
+    {
+        MatchesGrid.GetComponent<MatchingDB>().Request(gameObject.GetComponent<MatchingManager>().GetCurrentUser(), reciever);
+    }
 }

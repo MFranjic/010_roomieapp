@@ -29,6 +29,16 @@ public class DetailsScript : MonoBehaviour
     private StudentAlgo studentAlgo;
     private StudentMain studentMain;
 
+    public void SendPin()
+    {
+        GameObject.Find("SceneManager").GetComponent<MatchingNavigation>().SendPin(userID);
+    }
+
+    public void SendRequest()
+    {
+        GameObject.Find("SceneManager").GetComponent<MatchingNavigation>().SendRequest(userID);
+    }
+
     public void LoadScene(string userID)
     {
         this.userID = userID;

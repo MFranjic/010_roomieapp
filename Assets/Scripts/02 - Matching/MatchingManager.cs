@@ -8,6 +8,7 @@ public class MatchingManager : MonoBehaviour
 
     public GameObject gridPool;
     public GameObject gridDetails;
+    public GameObject gridMatches;
 
     private bool loading = false;
 
@@ -21,6 +22,11 @@ public class MatchingManager : MonoBehaviour
         FetchCurrentUser();
         StartCoroutine(FetchDataForPool());
         DoAlgorithm(userID);
+    }
+
+    public string GetCurrentUser()
+    {
+        return userID;
     }
 
     public void GetDetailsMainFromDB(StudentMain studentMain)
@@ -58,6 +64,10 @@ public class MatchingManager : MonoBehaviour
         yield return new WaitWhile(() => loading == true);
 
         gridPool.GetComponent<PoolScript>().InitializePool(userID, studentAlgoList, studentQuickList);
+
+        gameObject.GetComponent<MatchingNavigation>().NavigateMain("MATCHES");
+        gridMatches.GetComponent<CurrentMatchesManager>().LoadState();
+        //gameObject.GetComponent<MatchingNavigation>().NavigateMain("SEARCH");
     }
 
     public void FilterPool(string filterID)

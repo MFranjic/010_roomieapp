@@ -8,6 +8,11 @@ public class DatabaseManager : MonoBehaviour
 {
     private DatabaseReference database;
 
+    public DatabaseReference GetDatabase()
+    {
+        return database;
+    }
+
     public void FindDatabase()
     {
         database = FirebaseDatabase.DefaultInstance.RootReference;
@@ -210,6 +215,7 @@ public class DatabaseManager : MonoBehaviour
     {
         string json = JsonUtility.ToJson(student);
         AddStudent("MAIN_INFO", student.GetEmail(), json);
+        InitializeMatchingStates(student.GetEmail());
     }
 
     public void AddStudentQuick(StudentQuick student)
@@ -246,6 +252,14 @@ public class DatabaseManager : MonoBehaviour
                 Debug.Log("Student successfully added to DB.");
             }
         });
+    }
+
+    public void InitializeMatchingStates(string user)
+    {
+        database.Child("MATCHING").Child(user).Child("PINNED").SetValueAsync("");
+        database.Child("MATCHING").Child(user).Child("PENDING").SetValueAsync("");
+        database.Child("MATCHING").Child(user).Child("REQUESTED").SetValueAsync("");
+        database.Child("MATCHING").Child(user).Child("ACCEPTED").SetValueAsync("");
     }
 
     public void ChangeStudentMain(StudentMain student)
